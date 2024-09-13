@@ -5,10 +5,10 @@ import json
 app = func.FunctionApp()
 
 
-@app.queue_trigger(arg_name="msg", queue_name="translation-requests", connection="ms346_STORAGE") 
+@app.queue_trigger(arg_name="msg", queue_name="translation-requests", connection="AzureWebJobsStorage") 
 @app.table_output(arg_name="outputTable",
                   table_name="translations",
-                  connection="ms346_STORAGE")
+                  connection="AzureWebJobsStorage")
 def do_translation(msg: func.QueueMessage, outputTable: func.Out[str]) -> None:
     try:
         # Parse the queue message
